@@ -67,10 +67,14 @@ def connected():
 def ask_for_audio_profile(): 
   global audio_profile_list
   
-  for idx, profile in enumerate(audio_profile_list):
-    print(idx+1, ': ', profile, sep='')
+  print('Available audio profiles:' )
 
-  user_choice = int(input('Select a profile: '))
+  for idx, profile in enumerate(audio_profile_list):
+    print('  ', idx+1, ': ', profile, sep='')
+
+  print('')
+
+  user_choice = int(input('Select an audio profile: '))
 
   selected_audio_profile = audio_profile_list[user_choice - 1]
 
@@ -80,7 +84,7 @@ def set_audio_profile(audio_profile):
   if audio_profile in audio_profile_list:
     cmd(f"pactl set-card-profile {card_name} {audio_profile}")
   else:
-    print("Invalid profile")
+    print("Invalid audio profile")
 
 def connect():
   cmd(f"bluetoothctl connect {device_address}")
